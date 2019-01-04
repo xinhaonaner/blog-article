@@ -9,3 +9,8 @@
 2. ` lsof -i :port`
 
    查看端口占用情况，(list open files）
+
+3. `unrar x day1.rar`（首先需要先安装 unrar）
+
+   解压缩 .rar文件
+
