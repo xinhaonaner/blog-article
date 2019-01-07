@@ -5,3 +5,4 @@
 3. **go install**：go install 的作用有两步：第一步是编译导入的包文件，所有导入的包文件编译完才会编译主程序；第二步是将编译后生成的可执行文件放到 bin 目录下（$GOPATH/bin），编译后的包文件放到 pkg 目录下（$GOPATH/pkg）
 4. 参考：https://www.jianshu.com/p/35a4ec1b3067
 5. **go get**: go get 命令用于从远程代码仓库（比如 Github ）上下载并安装代码包，加上 -d，只执行 下载动作，不会安装
+
