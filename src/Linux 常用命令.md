@@ -14,3 +14,4 @@
 
    解压缩 .rar文件
 
+4. `ps -ef  |grep pwd`
