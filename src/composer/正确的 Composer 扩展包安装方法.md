@@ -7,3 +7,13 @@ composer update vendor/package - 从 composer.json 或者对应包的配置，�
 composer require new/package - 添加安装 new/package, 可以指定版本，如： composer require new/package ~2.5.
 ```
 
+
+```
+刷新 composer.lock 文件
+使用以下命令：
+composer update nothing
+或者：
+composer update --lock
+或者：
+暴力删除composer.lock文件 （哈哈）
+```
