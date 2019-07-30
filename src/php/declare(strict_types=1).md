@@ -43,6 +43,7 @@ Stack trace:
 #1 {main}
   thrown in E:\www\index.php on line 4
 ```
+
 1. strict_types不能写在脚本中间
 2. 只有在写declare的文件的执行部分才会执行严格模式,该文件中调用的其它函数(其它文件中的函数)也会被影响
 
