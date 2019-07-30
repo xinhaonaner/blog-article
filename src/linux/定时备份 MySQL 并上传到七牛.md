@@ -51,48 +51,44 @@
   qshell user ls 可以列举账户下所有的账户信息
   ```
   
- - 我们这里用的 qshell 命令是 rput，即以分片上传的方式上传一个文件，使用文档: https://github.com/qiniu/qshell/blob/master/docs/rput.md
+- 我们这里用的 qshell 命令是 rput，即以分片上传的方式上传一个文件，使用文档: https://github.com/qiniu/qshell/blob/master/docs/rput.md
 
- - `qshell rput if-pbl qiniu.mp4 /Users/jemy/Documents/qiniu.mp4`
-    上传本地文件/Users/jemy/Documents/qiniu.mp4到空间if-pbl里面
+- `qshell rput if-pbl qiniu.mp4 /Users/jemy/Documents/qiniu.mp4`
+  上传本地文件/Users/jemy/Documents/qiniu.mp4到空间if-pbl里面
+  
     
-    
-    
-  #### 撸代码
+ #### 撸代码
+```
+#!/bin/sh
+# mysql data backup script
+# use mysqldump --help,get more detail.
+dbname=your_dbname
+user=your_db_username
+password=your_db_password
+bakDir=/opt/backup/sql
+logFile=/opt/backup/mysqlbak.log
+datetime=`date +%Y%m%d%H%M%S`
+keepDay=7
+echo "-------------------------------------------" >> $logFile
+echo $(date +"%y-%m-%d %H:%M:%S") >> $logFile
+echo "--------------------------" >> $logFile
+cd $bakDir
+bakFile=$dbname.$datetime.sql.gz
+mysqldump -u$user -p$password $dbname | gzip > $bakFile
+echo "数据库 [$dbname] 备份完成" >> $logFile
+echo "$bakDir/$bakFile" >> $logFile
+echo "开始上传备份文件至七牛云存储" >> $logFile
+sudo /usr/local/bin/qshell rput log database/$bakFile $bakDir/$bakFile 
+echo "删除${keepDay}天前的备份文件" >> $logFile
+find $bakDir -ctime +$keepDay >> $logFile
+find $bakDir -ctime +$keepDay -exec rm -rf {} \;
+echo " " >> $logFile
+echo " " >> $logFile
+```
 
-    ```
-    #!/bin/sh
-    # mysql data backup script
-    #
-    # use mysqldump --help,get more detail.
-    dbname=your_dbname
-    user=your_db_username
-    password=your_db_password
-    bakDir=/opt/backup/sql
-    logFile=/opt/backup/mysqlbak.log
-    datetime=`date +%Y%m%d%H%M%S`
-    keepDay=7
-    echo "-------------------------------------------" >> $logFile
-    echo $(date +"%y-%m-%d %H:%M:%S") >> $logFile
-    echo "--------------------------" >> $logFile
-    cd $bakDir
-    bakFile=$dbname.$datetime.sql.gz
-    mysqldump -u$user -p$password $dbname | gzip > $bakFile
-    echo "数据库 [$dbname] 备份完成" >> $logFile
-    echo "$bakDir/$bakFile" >> $logFile
-    echo "开始上传备份文件至七牛云存储" >> $logFile
-    sudo /usr/local/bin/qshell rput log database/$bakFile $bakDir/$bakFile 
-    echo "删除${keepDay}天前的备份文件" >> $logFile
-    find $bakDir -ctime +$keepDay >> $logFile
-    find $bakDir -ctime +$keepDay -exec rm -rf {} \;
-    echo " " >> $logFile
-    echo " " >> $logFile
-    ```
-    
-    脚本中的数据库配置、日志文件、存放路径、`<Bucket>`等需自行修改，并存在。`database/$bakFile`，表示的是 `<Key>`，即在七牛存储中的路径&文件名，可自定义。
-    
-    脚本文件需可执行权限，然后可以执行脚本进行测试。
+脚本中的数据库配置、日志文件、存放路径、`<Bucket>`等需自行修改，并存在。`database/$bakFile`，表示的是 `<Key>`，即在七牛存储中的路径&文件名，可自定义。
 
+脚本文件需可执行权限，然后可以执行脚本进行测试。
 
 
 #### 定时任务
