@@ -40,7 +40,9 @@ fmt 包实现了格式化I/O函数，类似于C的 printf 和 scanf. 格式“�
 - % x 带空格的16进制格式
 
 结构体：
-- `%v` 正常打印。比如：`{sam {12345 67890}}`
-- `%+v` 带字段名称。比如：`{name:sam phone:{mobile:12345 office:67890}`
+- `%v` 正常打印。比如：`{hello {12345 67890}}`
+- `%+v` 带字段名称。比如：`{name:hello phone:{mobile:12345 office:67890}`
 - `%#v` 用Go的语法打印。
-  比如`main.People{name:”sam”, phone:main.Phone{mobile:”12345”, office:”67890”}}`
+  比如`main.People{name:”hello”, phone:main.Phone{mobile:”12345”, office:”67890”}}`
+  
+  参考：http://docscn.studygolang.com/pkg/fmt/
