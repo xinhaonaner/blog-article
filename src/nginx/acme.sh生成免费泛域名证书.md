@@ -12,7 +12,7 @@ curl  https://get.acme.sh | sh
 
 `source ~/.bashrc`
 
-执行 `.acme.sh`命令出现如图，表示安装成功
+执行 `acme.sh`命令出现如图，表示安装成功
 
 <img src="https://cdn.xinhaonaner.cn/xinhaonaner_cn/image_f68f54152451300da174c9d443ad1efe.png">
 
@@ -34,7 +34,7 @@ export DP_Key="xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 #### 三、生成泛域名证书
 
 ```
-acme.sh --issue -dns dns_dp -d xinhaonaner.cn -d *.xinhaonaner.cn
+acme.sh --issue --dns dns_dp -d xinhaonaner.cn -d *.xinhaonaner.cn
 ```
 
 执行成功后会在 `~/.acme.sh/xinhaonaner`目录下生成【该目录会改变】
