@@ -20,7 +20,9 @@ server {
 	listen 443 ssl;
     listen [::]:443 ssl;
 	ssl on;
+	# 证书位置
 	ssl_certificate /etc/nginx/ssl/www.xinhaonaner.cn/1_www.xinhaonaner.cn_bundle.crt;
+	# 私钥位置
 	ssl_certificate_key /etc/nginx/ssl/www.xinhaonaner.cn/2_www.xinhaonaner.cn.key;
 	server_tokens off;
 	ssl_session_timeout  5m;
@@ -44,7 +46,7 @@ server {
 	fastcgi_param  HTTPS  on;
 	fastcgi_param  HTTP_SCHEME  https;
 	
-	ssl_protocols TLSv1 TLSv1.1 TLSv1.2; #按照这个协议配置
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2; #按照这个协议配置，指定密码为openssl支持的格式
 	ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE; #按照这个套件配置
 	
 	access_log /var/log/nginx/web/www.xinhaonaner.cn.log;
