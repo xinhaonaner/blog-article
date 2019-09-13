@@ -30,8 +30,16 @@ curl  https://get.acme.sh | sh
 export DP_Id="xxxxxxxx"
 export DP_Key="xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
+<font style="color:red">阿里云申请</font>：[在这里哈](https://ak-console.aliyun.com/#/accesskey)
 
+<img src="https://cdn.xinhaonaner.cn/xinhaonaner_cn/image_9fb55fc27a45dcdd3b10fb89f65efc4f.png">
+导入：
+```
+export Ali_Key="Ali_Key"
+export Ali_Secret="Ali_Secret"
+```
 #### 三、生成泛域名证书
+dns-
 
 ```
 acme.sh --issue --dns dns_dp -d xinhaonaner.cn -d *.xinhaonaner.cn
@@ -57,3 +65,5 @@ ca.cer  fullchain.cer  xinhaonaner.cn.cer  xinhaonaner.cn.conf  xinhaonaner.cn.c
 [https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E](https://github.com/Neilpang/acme.sh/wiki/说明)
 
 https://juejin.im/post/5c38647f51882524206280ae
+
+[DNS API](https://github.com/Neilpang/acme.sh/wiki/dnsapi)
