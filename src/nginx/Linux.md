@@ -1,6 +1,20 @@
 ## 文件 & 目录操作（16 个）
 
+#### tar
 
+tar命令可以用来压缩打包单文件、多个文件、单个目录、多个目录。
+
+常用格式：
+
+单个文件压缩打包 tar czvf my.tar file1
+
+多个文件压缩打包 tar czvf my.tar file1 file2,...
+
+单个目录压缩打包 tar czvf my.tar dir1
+
+多个目录压缩打包 tar czvf my.tar dir1 dir2
+
+解包至当前目录：tar xzvf my.tar
 
 #### ls
 
