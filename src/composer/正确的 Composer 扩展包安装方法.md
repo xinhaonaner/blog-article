@@ -17,3 +17,8 @@ composer update --lock
 或者：
 暴力删除composer.lock文件 （哈哈）
 ```
+
+```
+线上安装
+composer install --no-dev
+```
