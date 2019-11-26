@@ -5,4 +5,3 @@
 	- `git reset --hard 【commit id】` 
 	- `git push -f` 强制推送远程分支
 	- 然后远程分支版本已回退
-
