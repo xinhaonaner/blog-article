@@ -124,3 +124,18 @@ alter table good_exposure_clicks delete where id > 0;
 alter table good_exposure_clicks update orders=1, carts_pv=2 where id > 0;
 ```
 
+参考资料：
+
+文档
+
+- https://clickhouse.tech/docs/en/
+- https://www.jianshu.com/p/f9a54193dc63
+- https://www.sohu.com/a/332065480_411876
+
+表引擎
+- https://my.oschina.net/maoxiang/blog/4617507
+- https://jiamaoxiang.top/2020/09/14/%E7%AF%87%E4%BA%8C-%E4%BB%80%E4%B9%88%E6%98%AFClickHouse%E7%9A%84%E8%A1%A8%E5%BC%95%E6%93%8E/#MergeTree%E8%A1%A8%E5%BC%95%E6%93%8E
+
+配置文件
+
+- https://www.cnblogs.com/zhoujinyi/p/12627780.html
