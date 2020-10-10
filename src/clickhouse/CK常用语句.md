@@ -30,7 +30,6 @@ drop table good_exposure_clicks;
 -- 拉取mysql数据
 insert into  goods select id, created_at from mysql('127.0.0.1', 'db', 'table', 'user', 'password');
 
-
 -- 优化表
 optimize table good_exposure_clicks;
 
@@ -49,18 +48,45 @@ select database, table, partition, partition_id, name, path
 from system.parts
 where table = 'good_exposure_clicks';
 
+alter table test detach partition 202004 -- 卸载分区
+alter table test attach partition 202004 -- 根据'分区键'挂载分区
+alter table test_new attach partition 202004 from test -- 从其他表中挂载分区
+alter table test attach part '202004_0_0_1' -- 根据'目录名'挂载分区
+
 -- 删除分区文件
 alter table good_exposure_clicks_test
     drop partition '2020-07-14';
--- 系统分区
-select *
-from system.mutations;
+
 ```
 
 
 
 ```
--- 查询、写入
+-- 维护常用sql
+
+-- 查看任务进度
+select * from system.mutations;
+-- 杀死进程
+kill mutation where mutation_id = 'trx_id';
+-- 查看连接数量
+select * from system.metrics where metric like '%Connection%';
+-- 查看表占用大小
+select database, table, formatReadableSize(sum(bytes)) as size from system.parts group by database, table order by database, table;
+-- 查看集群信息
+select * from system.clusters;
+-- 优化表分区
+optimize table test [PARTITION partition] [FINAL]
+
+-- 系统配置
+select * from system.settings;
+set send_logs_level = 'debug'; -- 修改日志级别，如 trace|debug 等等
+set insert_deduplicate = 0; -- 关闭重复数据自动删除，测试数据时关闭会比较好用
+```
+
+
+
+```
+-- CURD
 
 -- 写入
 insert into good_exposure_clicks (id, good_id, exposure, click, exposure_pv, click_pv, detail_pv, detail_uv,
@@ -91,5 +117,10 @@ and goods.category_id=1513
 GROUP BY c.good_id
 ORDER BY any(goods.supply_price) desc
 LIMIT 0, 10;
+
+-- 删除/更新数据
+-- 该命令是异步的，并不会马上执行
+alter table good_exposure_clicks delete where id > 0;
+alter table good_exposure_clicks update orders=1, carts_pv=2 where id > 0;
 ```
 
