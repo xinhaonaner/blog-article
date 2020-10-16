@@ -81,6 +81,9 @@ optimize table test [PARTITION partition] [FINAL]
 select * from system.settings;
 set send_logs_level = 'debug'; -- 修改日志级别，如 trace|debug 等等
 set insert_deduplicate = 0; -- 关闭重复数据自动删除，测试数据时关闭会比较好用
+
+-- 查询系统表当前在跑的所有megre
+select * from system.merges;
 ```
 
 
