@@ -44,7 +44,18 @@
 
     GET _cat/plugins
 
+// 清空索引内容
 
+```
+POST请求：
+http://localhost:9200/magic-index/magic-type/_delete_by_query?conflicts=proceed
+
+{
+  "query": {
+    "match_all": {}
+  }
+}
+```
 
 -----------------写入模块
 
